@@ -18,4 +18,16 @@ describe('position', function () {
       expect(a).not.toEqual(b);
     });
   });
+  describe('operations', function () {
+    it('should result in a new position when adding a vector to it', function () {
+      var a = Snake.position(4, 5);
+      var b = a.add(3, -1);
+
+      expect(a.x()).toEqual(4);
+      expect(a.y()).toEqual(5);
+
+      expect(b.x()).toEqual(7);
+      expect(b.y()).toEqual(4);
+    }); 
+  });
 });
