@@ -48,6 +48,10 @@ Snake.snake = function (params) {
 
   var api = {};
   
+  api.move = function () {
+    config.head = config.direction.next(config.head);
+  };
+
   api.occupiedPositions = function () {
     var positions = [];
     config.size.times(function (many) {

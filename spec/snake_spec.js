@@ -77,6 +77,13 @@ describe('snake', function () {
   });
 
   it('should move forward', function () {
+      var solid = Snake.snake({ head: Snake.position(1, 6), direction: Snake.direction.west });
+      solid.move();
+      expect(solid.occupiedPositions()).toContain(Snake.position(0, 6));
+      expect(solid.occupiedPositions()).toContain(Snake.position(1, 6));
+      expect(solid.occupiedPositions()).toContain(Snake.position(2, 6));
+      expect(solid.occupiedPositions()).toContain(Snake.position(3, 6));
+      expect(solid.occupiedPositions()).toContain(Snake.position(4, 6));
   });
 
   it('should turn left', function () {
