@@ -65,13 +65,15 @@ describe('direction', function () {
 });
 
 describe('snake', function () {
-  it('should have a list with the positions that are occupied', function () {
-    var solid = Snake.snake({ head: Snake.position(1, 6), direction: Snake.direction.north });
-    expect(solid.occupiedPositions()).toContain(Snake.position(1, 2));
-    expect(solid.occupiedPositions()).toContain(Snake.position(1, 3));
-    expect(solid.occupiedPositions()).toContain(Snake.position(1, 4));
-    expect(solid.occupiedPositions()).toContain(Snake.position(1, 5));
-    expect(solid.occupiedPositions()).toContain(Snake.position(1, 6));
+  describe('on creation', function () {
+    it('should have a list with the positions that are occupied', function () {
+      var solid = Snake.snake({ head: Snake.position(1, 6), direction: Snake.direction.north });
+      expect(solid.occupiedPositions()).toContain(Snake.position(1, 2));
+      expect(solid.occupiedPositions()).toContain(Snake.position(1, 3));
+      expect(solid.occupiedPositions()).toContain(Snake.position(1, 4));
+      expect(solid.occupiedPositions()).toContain(Snake.position(1, 5));
+      expect(solid.occupiedPositions()).toContain(Snake.position(1, 6));
+    });
   });
 
   it('should move forward', function () {
