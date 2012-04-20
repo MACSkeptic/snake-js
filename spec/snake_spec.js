@@ -10,6 +10,9 @@ describe('direction', function () {
     it('should know the next position', function () {
       expect(Snake.direction.north.next(Snake.position(1, 1))).toEqual(Snake.position(1, 2));
     });
+    it('should know the previous position', function () {
+      expect(Snake.direction.north.previous(Snake.position(1, 1))).toEqual(Snake.position(1, 0));
+    });
     it('should know the direction that is to the left of it', function () {
       expect(Snake.direction.north.left()).toEqual(Snake.direction.west);
     });
@@ -20,6 +23,9 @@ describe('direction', function () {
   describe('south', function () {
     it('should know the next position', function () {
       expect(Snake.direction.south.next(Snake.position(1, 1))).toEqual(Snake.position(1, 0));
+    });
+    it('should know the previous position', function () {
+      expect(Snake.direction.south.previous(Snake.position(1, 1))).toEqual(Snake.position(1, 2));
     });
     it('should know the direction that is to the left of it', function () {
       expect(Snake.direction.south.left()).toEqual(Snake.direction.east);
@@ -32,6 +38,9 @@ describe('direction', function () {
     it('should know the next position', function () {
       expect(Snake.direction.west.next(Snake.position(1, 1))).toEqual(Snake.position(0, 1));
     });
+    it('should know the previous position', function () {
+      expect(Snake.direction.west.previous(Snake.position(1, 1))).toEqual(Snake.position(2, 1));
+    });
     it('should know the direction that is to the left of it', function () {
       expect(Snake.direction.west.left()).toEqual(Snake.direction.south);
     });
@@ -42,6 +51,9 @@ describe('direction', function () {
   describe('east', function () {
     it('should know the next position', function () {
       expect(Snake.direction.east.next(Snake.position(1, 1))).toEqual(Snake.position(2, 1));
+    });
+    it('should know the previous position', function () {
+      expect(Snake.direction.east.previous(Snake.position(1, 1))).toEqual(Snake.position(0, 1));
     });
     it('should know the direction that is to the left of it', function () {
       expect(Snake.direction.east.left()).toEqual(Snake.direction.north);
@@ -54,12 +66,12 @@ describe('direction', function () {
 
 describe('snake', function () {
   it('should have a list with the positions that are occupied', function () {
-    var solid = Snake.snake();
-    expect(solid.occupiedPositions()).toContain(Snake.position(0, 0));
-    expect(solid.occupiedPositions()).toContain(Snake.position(1, 0));
-    expect(solid.occupiedPositions()).toContain(Snake.position(2, 0));
-    expect(solid.occupiedPositions()).toContain(Snake.position(3, 0));
-    expect(solid.occupiedPositions()).toContain(Snake.position(4, 0));
+    var solid = Snake.snake({ head: Snake.position(1, 6), direction: Snake.direction.north });
+    expect(solid.occupiedPositions()).toContain(Snake.position(1, 2));
+    expect(solid.occupiedPositions()).toContain(Snake.position(1, 3));
+    expect(solid.occupiedPositions()).toContain(Snake.position(1, 4));
+    expect(solid.occupiedPositions()).toContain(Snake.position(1, 5));
+    expect(solid.occupiedPositions()).toContain(Snake.position(1, 6));
   });
 
   it('should move forward', function () {
