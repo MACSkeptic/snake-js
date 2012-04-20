@@ -5,6 +5,49 @@ describe('all', function () {
  });  
 });
 
+describe('direction', function () {
+  describe('north', function () {
+    it('should provide the right delta', function () {
+      expect(Snake.direction.north.next(Snake.position(1, 1))).toEqual(Snake.position(1, 2));
+    });
+  });
+  describe('south', function () {
+    it('should provide the right delta', function () {
+      expect(Snake.direction.south.next(Snake.position(1, 1))).toEqual(Snake.position(1, 0));
+    });
+  });
+  describe('west', function () {
+    it('should provide the right delta', function () {
+      expect(Snake.direction.west.next(Snake.position(1, 1))).toEqual(Snake.position(0, 1));
+    });
+  });
+  describe('east', function () {
+    it('should provide the right delta', function () {
+      expect(Snake.direction.east.next(Snake.position(1, 1))).toEqual(Snake.position(2, 1));
+    });
+  });
+});
+
+describe('snake', function () {
+  it('should have a list with the positions that are occupied', function () {
+    var solid = Snake.snake();
+    expect(solid.occupiedPositions()).toContain(Snake.position(0, 0));
+    expect(solid.occupiedPositions()).toContain(Snake.position(1, 0));
+    expect(solid.occupiedPositions()).toContain(Snake.position(2, 0));
+    expect(solid.occupiedPositions()).toContain(Snake.position(3, 0));
+    expect(solid.occupiedPositions()).toContain(Snake.position(4, 0));
+  });
+
+  it('should move forward', function () {
+  });
+
+  it('should turn left', function () {
+  });
+
+  it('should turn right', function () {
+  });
+});
+
 describe('position', function () {
   describe('equality', function () {
     it('should be true if the coordinates are the same', function () {
