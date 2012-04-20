@@ -11,6 +11,7 @@ Snake.direction = (function () {
       right: function () { return Snake.direction.south }
     }; 
   }());
+
   api.west = (function () { 
     return { 
       next: function (position) { return position.add(-1, 0); },
@@ -19,6 +20,7 @@ Snake.direction = (function () {
       right: function () { return Snake.direction.north }
     }; 
   }());
+
   api.south = (function () { 
     return { 
       next: function (position) { return position.add(0, -1); },
@@ -27,6 +29,7 @@ Snake.direction = (function () {
       right: function () { return Snake.direction.west }
     }; 
   }());
+
   api.north = (function () { 
     return { 
       next: function (position) { return position.add(0, 1); },
@@ -56,6 +59,8 @@ Snake.snake = function (params) {
       positions.push(position);
     });
   }());
+
+  api.eat = function () { positions.push(positions.last()); };
   
   api.move = function () { 
     config.head = config.direction.next(config.head);
@@ -77,18 +82,10 @@ Snake.position = function (x, y) {
   api.x = function () { return x; };
   api.y = function () { return y; };
 
-  api.equals = function (otherPosition) {
-    return x == otherPosition.x() &&
-      y == otherPosition.y();
-  };
+  api.equals = function (otherPosition) { return x == otherPosition.x() && y == otherPosition.y(); };
+  api.toString = function () { return '# Position: (' + x + ', ' + y + ') #'; };
 
-  api.toString = function () {
-    return '# Position: (' + x + ', ' + y + ') #';
-  };
-
-  api.add = function (dx, dy) {
-    return Snake.position(x + dx, y + dy);
-  };
+  api.add = function (dx, dy) { return Snake.position(x + dx, y + dy); };
 
   return api;
 };
