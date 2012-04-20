@@ -87,6 +87,25 @@ describe('snake', function () {
   });
 
   it('should turn left', function () {
+      var solid = Snake.snake({ head: Snake.position(5, 6), direction: Snake.direction.north });
+      solid.turnLeft();
+      solid.move();
+      expect(solid.occupiedPositions()).toContain(Snake.position(5, 3));
+      expect(solid.occupiedPositions()).toContain(Snake.position(5, 4));
+      expect(solid.occupiedPositions()).toContain(Snake.position(5, 5));
+      expect(solid.occupiedPositions()).toContain(Snake.position(5, 6));
+      expect(solid.occupiedPositions()).toContain(Snake.position(4, 6));
+  });
+
+  it('should turn right', function () {
+      var solid = Snake.snake({ head: Snake.position(5, 6), direction: Snake.direction.north });
+      solid.turnRight();
+      solid.move();
+      expect(solid.occupiedPositions()).toContain(Snake.position(5, 3));
+      expect(solid.occupiedPositions()).toContain(Snake.position(5, 4));
+      expect(solid.occupiedPositions()).toContain(Snake.position(5, 5));
+      expect(solid.occupiedPositions()).toContain(Snake.position(5, 6));
+      expect(solid.occupiedPositions()).toContain(Snake.position(6, 6));
   });
 
   it('should turn right', function () {

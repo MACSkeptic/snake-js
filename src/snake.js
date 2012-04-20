@@ -47,20 +47,26 @@ Snake.snake = function (params) {
   });
 
   var api = {};
-  
-  api.move = function () {
-    config.head = config.direction.next(config.head);
-  };
+  var positions = [];
 
-  api.occupiedPositions = function () {
-    var positions = [];
+  (function initialize () {
     config.size.times(function (many) {
       var position = config.head;
       many.times(function () { position = config.direction.previous(position); });
       positions.push(position);
     });
-    return positions;
+  }());
+  
+  api.move = function () { 
+    config.head = config.direction.next(config.head);
+    positions.unshift(config.head);
+    positions.pop();
   };
+
+  api.turnLeft = function () { config.direction = config.direction.left(); };
+  api.turnRight = function () { config.direction = config.direction.right(); };
+
+  api.occupiedPositions = function () { return positions; };
 
   return api;
 };
