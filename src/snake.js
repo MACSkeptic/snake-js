@@ -19,5 +19,9 @@ Snake.position = function (x, y) {
       y == otherPosition.y();
   };
 
+  api.toString = function () {
+    return '# Position: (' + x + ', ' + y + ') #';
+  }
+
   return api;
 };
