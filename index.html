@@ -23,7 +23,7 @@
 
 			function drawAt(position) {
 				var div = $('<div />').css('background', 'red').css('width', 10).css('height', 10).css('position', 'absolute');
-				div.css('top', position.y() * -10).css('left', position.x() * 10);
+				div.css('bottom', position.y() * 10).css('left', position.x() * 10);
 				board.append(div);
 			}
 
