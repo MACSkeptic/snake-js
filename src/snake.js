@@ -1,5 +1,19 @@
 var Snake = Snake || {};
 
+Snake.game = function (params) {
+  var api = {};
+  var config = (params || {}).defaults({
+    snake: Snake.snake(),
+    board: Snake.board(10)
+  });
+
+  api.loop = function () {
+    config.snake.move();
+  };
+
+  return api;
+};
+
 Snake.board = function (size) {
   var api = {};
 
@@ -51,7 +65,7 @@ Snake.direction = (function () {
 }());
 
 Snake.snake = function (params) {
-  config = (params || {}).defaults({
+  var config = (params || {}).defaults({
     size: 5,
     direction: Snake.direction.east,
     head: Snake.position(4, 0)

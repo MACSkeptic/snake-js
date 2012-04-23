@@ -5,6 +5,19 @@ describe('all', function () {
  });  
 });
 
+describe('game', function () {
+  it('should move the snake on the game loop', function () {
+    var solid = Snake.snake();
+    var game = Snake.game({snake: solid});
+
+    spyOn(solid, 'move');
+
+    game.loop();
+
+    expect(solid.move).toHaveBeenCalled();
+  });
+});
+
 describe('board', function () { 
   it('should verifiy if a position is inside its boundaries', function () {
     var board = Snake.board(10);
