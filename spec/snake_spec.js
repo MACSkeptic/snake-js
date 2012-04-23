@@ -158,6 +158,17 @@ describe('position', function () {
       var b = Snake.position(1, 1);
       expect(a).not.toEqual(b);
     });
+    it('should be between other positions if both x and y are between', function () {
+      var lower = Snake.position(1, 1);
+      var upper = Snake.position(3, 3);
+      expect(Snake.position(2, 2).between(lower, upper)).toBeTruthy();
+      expect(Snake.position(3, 2).between(lower, upper)).toBeFalsy();
+      expect(Snake.position(2, 3).between(lower, upper)).toBeFalsy();
+      expect(Snake.position(1, 2).between(lower, upper)).toBeFalsy();
+      expect(Snake.position(2, 1).between(lower, upper)).toBeFalsy();
+      expect(Snake.position(0, 0).between(lower, upper)).toBeFalsy();
+      expect(Snake.position(4, 4).between(lower, upper)).toBeFalsy();
+    });
   });
   describe('operations', function () {
     it('should result in a new position when adding a vector to it', function () {
