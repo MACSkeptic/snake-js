@@ -3,9 +3,7 @@ var Snake = Snake || {};
 Snake.board = function (size) {
   var api = {};
 
-  api.contains = function (position) {
-    return position.between(Snake.position(-1, -1), Snake.position(size, size));
-  };
+  api.contains = function (position) { return position.between(Snake.position(-1, -1), Snake.position(size, size)); };
 
   return api;
 };
