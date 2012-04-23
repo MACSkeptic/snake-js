@@ -1,5 +1,15 @@
 var Snake = Snake || {};
 
+Snake.board = function (size) {
+  var api = {};
+
+  api.contains = function (position) {
+    return position.between(Snake.position(-1, -1), Snake.position(size, size));
+  };
+
+  return api;
+};
+
 Snake.direction = (function () {
   var api = {};
 
@@ -84,6 +94,8 @@ Snake.position = function (x, y) {
 
   api.equals = function (otherPosition) { return x == otherPosition.x() && y == otherPosition.y(); };
   api.toString = function () { return '# Position: (' + x + ', ' + y + ') #'; };
+
+  api.between = function (lower, upper) { return lower.x() < x && lower.y() < y && upper.x() > x && upper.y() > y; };
 
   api.add = function (dx, dy) { return Snake.position(x + dx, y + dy); };
 
