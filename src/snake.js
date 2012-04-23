@@ -95,6 +95,12 @@ Snake.snake = function (params) {
 
   api.occupiedPositions = function () { return positions; };
 
+  api.intersects = function (position) { 
+    return api.occupiedPositions().any(function (occupied) {
+      return occupied.equals(position);
+    });
+  };
+
   return api;
 };
 

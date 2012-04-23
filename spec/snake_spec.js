@@ -101,6 +101,17 @@ describe('snake', function () {
     });
   });
 
+  it('should tell if a position intersects with its occupied positions', function () {
+    var solid = Snake.snake({ head: Snake.position(1, 6), direction: Snake.direction.north });
+    expect(solid.intersects(Snake.position(1, 2))).toBeTruthy();
+    expect(solid.intersects(Snake.position(1, 3))).toBeTruthy();
+    expect(solid.intersects(Snake.position(1, 4))).toBeTruthy();
+    expect(solid.intersects(Snake.position(1, 5))).toBeTruthy();
+    expect(solid.intersects(Snake.position(1, 6))).toBeTruthy();
+    expect(solid.intersects(Snake.position(1, 7))).toBeFalsy();
+    expect(solid.intersects(Snake.position(1, 1))).toBeFalsy();
+  });
+
   it('should eat and grow', function () {
       var solid = Snake.snake({ head: Snake.position(1, 6), direction: Snake.direction.north });
       solid.eat();
