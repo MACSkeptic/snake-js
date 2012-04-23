@@ -6,15 +6,17 @@ describe('all', function () {
 });
 
 describe('game', function () {
-  it('should move the snake on the game loop', function () {
-    var solid = Snake.snake();
-    var game = Snake.game({snake: solid});
+  describe('loop', function () {
+    it('should move the snake', function () {
+      var solid = Snake.snake();
+      var game = Snake.game({snake: solid});
 
-    spyOn(solid, 'move');
+      spyOn(solid, 'move');
 
-    game.loop();
+      game.loop();
 
-    expect(solid.move).toHaveBeenCalled();
+      expect(solid.move).toHaveBeenCalled();
+    });
   });
 });
 
@@ -27,6 +29,12 @@ describe('board', function () {
     expect(board.contains(Snake.position(9, 10))).toBeFalsy();
     expect(board.contains(Snake.position(-1, 0))).toBeFalsy();
     expect(board.contains(Snake.position(0, -1))).toBeFalsy();
+  });
+
+  it('should pick a random spot', function () {
+    var board = Snake.board(20);
+    var position = board.randomPosition();
+    expect(board.contains(position)).toBeTruthy();
   });
 });
 
