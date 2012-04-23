@@ -17,6 +17,20 @@ describe('game', function () {
 
       expect(solid.move).toHaveBeenCalled();
     });
+    it('should eat if intercepts food', function () {
+      var board = Snake.board(50);
+      var solid = Snake.snake();
+      var game = Snake.game({board: board, snake: solid});
+      var food = Snake.position(3, 3);
+
+      spyOn(board, 'randomPosition').andReturn(food);
+      spyOn(solid, 'intersects').andReturn(true);
+      spyOn(solid, 'eat');
+
+      game.loop();
+
+      expect(solid.eat).toHaveBeenCalled();
+    });
   });
 });
 

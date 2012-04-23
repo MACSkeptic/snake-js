@@ -9,7 +9,9 @@
   <script type="text/javascript" src="src/snake.js"></script>
 
 	<style>
-		#board { position: relative; width: 400px; height: 400px; border: outset 2px black; }
+		#board { position: relative; width: 300px; height: 300px; background: black; }
+		.node { position: absolute; width: 10px; height: 10px; background: red; }
+		.food { background: blue; }
 	</style>
 </head>
 <body>
@@ -18,25 +20,14 @@
 
 	<script>
 		$(function () {
-			var board = $('#board');
-			var solid = Snake.snake();
-
-			function drawAt(position) {
-				var div = $('<div />').css('background', 'red').css('width', 10).css('height', 10).css('position', 'absolute');
-				div.css('bottom', position.y() * 10).css('left', position.x() * 10);
-				board.append(div);
-			}
+			var game = Snake.game();
 
 			function gameLoop() {
-				board.html('');
-				solid.move();
-				solid.occupiedPositions().each(function (position) {
-					drawAt(position);
-				});
+				game.loop();
+				game.draw();
 			}
-			
-			KeyboardJS.bind.key('a', function () { solid.turnLeft(); });
-			KeyboardJS.bind.key('d', function () { solid.turnRight(); });
+
+			game.handleInput();	
 
 			setInterval(gameLoop, 100);
 		});
