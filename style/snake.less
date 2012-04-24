@@ -5,6 +5,23 @@ body, body *, * {
 	font-family: Helvetica, Arial;
 }
 
+#content {
+	box-shadow: 5px 5px 5px gray;
+	border: solid 2px black;
+	width: auto;
+	display: inline-block;
+	margin: 30px;
+}
+
+h1 {
+	display: block;
+	margin: 10px 40px;
+	width: 300px;
+	-webkit-animation: pulsate 1s ease-out;
+	-webkit-animation-iteration-count: infinite; 
+	opacity: 0.0
+}
+
 #board { 
 	position: relative; 
 	width: 300px; 
@@ -27,9 +44,11 @@ body, body *, * {
 	height: 10px; 
 	background: red; 
 	border-radius: 5px; 
+	z-index: 800;
 
 	&:first-child {
 		border: solid white 2px; 
+		z-index: 900;
 	}
 
 	&.food {
@@ -39,12 +58,6 @@ body, body *, * {
 }
 
 
-h1 {
-	display: inline-block;
-	-webkit-animation: pulsate 1s ease-out;
-	-webkit-animation-iteration-count: infinite; 
-	opacity: 0.0
-}
 @-webkit-keyframes pulsate {
     0% {-webkit-transform: scale(0, 0); opacity: 0.0;}
     50% {opacity: 1.0;}
