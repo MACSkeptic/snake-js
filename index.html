@@ -1,21 +1,16 @@
 <!doctype html>
 <html>
 <head>
+	<link rel="stylesheet/less" type="text/css" href="style/snake.less"></link>
+
   <script type="text/javascript" src="lib/jquery-1.7.2.js"></script>
   <script type="text/javascript" src="lib/keyboard.js"></script>
   <script type="text/javascript" src="lib/underscore.js"></script>
   <script type="text/javascript" src="lib/prettify.js"></script>
 
-  <script type="text/javascript" src="src/snake.js"></script>
+  <script type="text/javascript" src="lib/less-1.3.0.min.js"></script>
 
-	<style>
-		body, body *, * { margin: 0; padding: 0; }
-		#board { position: relative; width: 300px; height: 300px; background: black; color: black; }
-		.node { position: absolute; width: 10px; height: 10px; background: red; border-radius: 5px; box-sizing: border-box; }
-		.node:first-child { border: solid white 2px; }
-		.food { background: blue; border: solid 2px teal; }
-		.over { line-height: 300px; background: red !important; color: white !important; font-size: 30px; font-family: Arial; text-align: center; }
-	</style>
+  <script type="text/javascript" src="src/snake.js"></script>
 </head>
 <body>
 	<div id="board">
