@@ -34,6 +34,12 @@ Snake.game = function (params) {
   api.draw = function () {
     var board = ui.board();
     board.html('');
+
+    if(over) {
+      board.addClass('over').html('Game Over');
+      return;
+    }
+
     config.snake.occupiedPositions().each(function (occupiedPosition) {
       board.append(ui.square(occupiedPosition));
     });
