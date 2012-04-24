@@ -32,6 +32,19 @@ describe('game', function () {
       expect(solid.eat).toHaveBeenCalled();
     });
   });
+  it('should be over if the snake hits the walls', function () {
+      var board = Snake.board(50);
+      var solid = Snake.snake();
+      var game = Snake.game({board: board, snake: solid});
+
+      spyOn(board, 'contains').andReturn(false);
+
+      game.loop();
+
+      expect(board.contains).toHaveBeenCalledWith(solid.head());
+      
+      expect(game.over()).toBeTruthy();
+  });
 });
 
 describe('board', function () { 

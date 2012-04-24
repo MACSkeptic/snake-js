@@ -3,6 +3,7 @@ var Snake = Snake || {};
 Snake.game = function (params) {
   var api = {};
   var food = undefined;
+  var over = false;
   var config = (params || {}).defaults({
     snake: Snake.snake(),
     board: Snake.board(30)
@@ -15,13 +16,20 @@ Snake.game = function (params) {
   };
 
   api.loop = function () {
+    if(over) { return; }
+
     config.snake.move();
+
+    over = !config.board.contains(config.snake.head());
+
     food = food || config.board.randomPosition();
     if(config.snake.intersects(food)) {
       config.snake.eat();
       food = config.board.randomPosition();
     }
   };
+
+  api.over = function () { return over; };
 
   api.draw = function () {
     var board = ui.board();
@@ -114,6 +122,7 @@ Snake.snake = function (params) {
   }());
 
   api.eat = function () { positions.push(positions.last()); };
+  api.head = function () { return positions.first(); };
   
   api.move = function () { 
     config.head = config.direction.next(config.head);
