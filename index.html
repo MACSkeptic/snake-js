@@ -23,7 +23,16 @@
 	</section>
 
 	<script>
-    // game logic here :)
+		$(function () {
+			var game = Snake.game();
+			var gameId = undefined;
+
+			function gameLoop() { game.loop(); game.draw(); if(game.over()) { clearInterval(gameId); } }
+
+			gameId = setInterval(gameLoop, 100);
+
+			game.handleInput();	
+		});
 	</script>
 </body>
 </html>
