@@ -1,0 +1,2 @@
+describe('snake', function () {
+});
